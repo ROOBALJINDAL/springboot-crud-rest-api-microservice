@@ -15,10 +15,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	String getDefaultMessage(){
 		return userService.getRootTemplate();
-	}
+	}*/
 	
 
 	@RequestMapping("/getUsers")

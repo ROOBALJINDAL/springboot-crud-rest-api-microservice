@@ -13,22 +13,20 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter  {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http
+        http
             .authorizeRequests()
-                .antMatchers("/","/save").permitAll()
-                .anyRequest().authenticated().and()
+               // .antMatchers("/","/save").permitAll()
+                .anyRequest().authenticated()
+                .and()
             .formLogin()
-                .loginPage("/login.html").failureUrl("/login?error").permitAll().and()
-                .csrf().disable();*/
-    	http
-        .authorizeRequests().antMatchers("/","/save").permitAll()
-        .anyRequest().authenticated();
-    	http
-        .formLogin()
-        //.failureUrl("/login?error")
-       // .defaultSuccessUrl("/")
-        .loginPage("/login")
-        .permitAll();
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and()
+                .logout()    //logout configuration
+                .logoutUrl("/app-logout") 
+                .logoutSuccessUrl("/");
                 
     }
 
@@ -36,6 +34,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter  {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+                .withUser("root").password("Alert1234").roles("USER");
     }
 }
